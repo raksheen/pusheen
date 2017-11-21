@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pusheen Animation</title>
+	<style type="text/css">
+	body {
+		background-color: rgb(177,246,216);
+	}
+	#myContainer{
+		width: 100%;
+		height: 600px;
+		position: relative;
+		background-color: rgb(177, 246,216);
+		background-repeat: no-repeat;
+		margin-left:0px;
+	}	
+	#myAnimation{
+		width: 480px;
+		height: 480px;
+		position: absolute;
+		background: url('https://media.giphy.com/media/3ohzdK0wKXii6cDKsU/giphy.gif') 100%;
+	}
+	#nutella{
+		width: 400px;
+		position:absolute;
+		animation: nutella 7s infinite;	
+	}
+		@keyframes nutella {
+			0% {top: 0px;}
+			20% {top: 200px;width:200px;}
+			50% {top:150px;width:100px;}
+			75% {top:600px;}
+			100% {top: 0px;}
+		}
+	#pizza{
+		width:300px;
+		position:absolute;
+		margin-left:60px;
+		animation:pizza 8s infinite;
+	}
+		@keyframes pizza {
+			0% {top: -10px;}
+			20% {top:100px;left:100px;}
+			50% {top:300px;}
+			75% {top:600px;}
+			100% {top: 0px;left:300px;bottom:300px;}
+		}
+
+	#chips{
+		width:300px;
+		margin-left: 20px;
+		margin-top:100px;
+		position:absolute;
+		animation: chips 15s infinite;
+	}
+
+		@keyframes chips {
+				0% {left:0px;}
+				20% {top:150px; left:350px;}
+				50% {top:200px;left:400px;}
+				75% {top:150px;left:450px;}
+				100% {top:150px;left:500px;}
+			}
+	#cheetos {
+		width:300px;
+		position:absolute;
+		animation: cheetos 6s infinite;
+	}		
+		@keyframes cheetos {
+			0% {left:0px;}
+			30% {left:50px; top:100px;}
+			60% {left:50px; top:150px;}
+			100% {left:120px; top:175px;}
+
+		}
+	#pasta {
+		width:300px;
+		position:absolute;
+		animation: pasta 10s infinite;
+	}
+		@keyframes pasta{
+			0% {left: 300px;top:100px;}
+			50% {left:300px;top:250px;}
+			100%{left:300px;top:200px;}
+		}
+
+
+	button{
+		background:url('http://beingkids.sg/wp-content/uploads/2017/01/pusheen-lazy-300x300.jpg');
+		width:300px;
+		height:300px;
+	}
+</style>
+</head>
+<body>
+	<div id="myContainer">
+		
+		<div id="myAnimation"></div>
+		
+		<div id="nutella"><img id="nutella" src="https://media.giphy.com/media/3ohzdLwyltdf9JuHdK/giphy.gif"></div>
+		
+		<div id="pizza">
+			<img id="pizza" src="https://media.giphy.com/media/3oKIP6MpDhlj0CpLig/giphy.gif">
+		</div>
+		
+		<div id="chips"><img id="chips" src="https://media.giphy.com/media/xUPGcrAR05bYvAnqPm/giphy.gif"></div>	
+
+		<div id="cheetos"><img id="cheetos" src="https://media.giphy.com/media/xUPGcHrMjWnjI8JAn6/giphy.gif"></div>
+
+		<div id="pasta"><img id="pasta" src="https://media.giphy.com/media/l4FGk33miUa9wQBQk/giphy.gif"></div>
+		
+
+	</div>
+
+	<p>
+		<button onclick="move()" img src="http://beingkids.sg/wp-content/uploads/2017/01/pusheen-lazy-300x300.jpg"></button>
+	</p>
+	<script type="text/javascript">
+		function move(){
+			var elem = document.getElementById('myAnimation');
+			var nutella =document.getElementById('nutella');
+			var chips=document.getElementById('chips');
+			var pizza=document.getElementById('pizza');
+			var pos = 0;
+			//variable tpos -> value for top position
+			//variable lpos -> value for left position	
+			var tpos = 0;
+			var lpos = 0;
+			//store setInterval in a variable --> calls frame function every 5 milliseconds 
+			var id = setInterval(frame,5);
+				//function frame moves div to each corner of square
+				function frame(){
+					pos++;
+					//between 0 and 350 increment lpos by 1
+					if(pos <= 900){
+						lpos++;
+						elem.style.left = lpos+'px';
+						nutella.style.top=tpos + 'px';
+					}
+					//between 351 and 700 increment tpos by 1
+					else if(pos <= 1000){
+						tpos++;
+						elem.style.top = tpos+'px';
+						// elem.style.background = 'red';
+					}
+					//between 701 and 1050 decrement lpos by 1
+					else if(pos <= 1100){
+						lpos--;
+						elem.style.left = lpos+'px';
+						// elem.style.background = 'grey';
+					}
+					//between 10501 and 1400 decrement tpos by 1
+					else if(pos <=1300){
+						tpos--;
+						elem.style.top = tpos+'px';
+						// elem.style.background = 'white';
+					}
+					//after pos is greater than 1400 clear interval id
+					else{
+						clearInterval(id);
+						// elem.style.background = 'blue';
+					}
+				}
+		}
+	</script>
+</body>
+</html>
